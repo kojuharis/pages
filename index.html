@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Testing Purpose Page</h1>
+        <p>This page is designed for testing various web functionalities</p>
+    </header>
+
+    <main>
+        <section id="basic-tests">
+            <h2>Basic HTML Tests</h2>
+            <p>This section tests basic HTML elements:</p>
+            <ul>
+                <li>Text formatting: <strong>bold</strong>, <em>italic</em>, <code>code</code></li>
+                <li>Links: <a href="#" id="test-link">Test Link</a></li>
+                <li>Images: <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='50' height='50' fill='%23007acc'/%3E%3C/svg%3E" alt="Test Image" /></li>
+            </ul>
+        </section>
+
+        <section id="form-tests">
+            <h2>Form Tests</h2>
+            <form id="test-form">
+                <div>
+                    <label for="test-input">Test Input:</label>
+                    <input type="text" id="test-input" name="test-input" placeholder="Enter test text">
+                </div>
+                <div>
+                    <label for="test-select">Test Select:</label>
+                    <select id="test-select" name="test-select">
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" id="test-checkbox" name="test-checkbox">
+                        Test Checkbox
+                    </label>
+                </div>
+                <button type="submit">Test Submit</button>
+            </form>
+        </section>
+
+        <section id="interactive-tests">
+            <h2>Interactive Tests</h2>
+            <button id="test-button">Click Me for Test</button>
+            <div id="test-output">Click the button to see test output</div>
+        </section>
+
+        <section id="status-tests">
+            <h2>Status Tests</h2>
+            <div id="page-status">
+                <p>Page Load Status: <span id="load-status">Loading...</span></p>
+                <p>JavaScript Status: <span id="js-status">Checking...</span></p>
+                <p>CSS Status: <span id="css-status">Checking...</span></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Testing page - Last updated: <span id="last-updated"></span></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
