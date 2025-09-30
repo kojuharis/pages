@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page - Testing Pages</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Testing Pages</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="test.html">Test Page</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="test-section">
+            <h2>Test Page</h2>
+            <p>This page is designed for testing various web functionalities.</p>
+            
+            <h3>Form Testing</h3>
+            <form id="test-form" onsubmit="return false;">
+                <div style="margin-bottom: 1rem;">
+                    <label for="test-name">Name (required):</label><br>
+                    <input type="text" id="test-name" name="name" required style="padding: 0.5rem; width: 100%; max-width: 300px; margin-top: 0.25rem;">
+                </div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <label for="test-email">Email (required):</label><br>
+                    <input type="email" id="test-email" name="email" required style="padding: 0.5rem; width: 100%; max-width: 300px; margin-top: 0.25rem;">
+                </div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <label for="test-message">Message:</label><br>
+                    <textarea id="test-message" name="message" rows="3" style="padding: 0.5rem; width: 100%; max-width: 300px; margin-top: 0.25rem;"></textarea>
+                </div>
+                
+                <button type="button" onclick="testFormValidation()" style="background-color: #27ae60; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 4px; cursor: pointer;">
+                    Test Form Validation
+                </button>
+                <div id="form-result" style="margin-top: 1rem;"></div>
+            </form>
+            
+            <h3>JavaScript Testing</h3>
+            <button onclick="window.testUtils.runBasicTests()" style="background-color: #8e44ad; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 4px; cursor: pointer; margin-right: 1rem;">
+                Run Basic Tests
+            </button>
+            
+            <button onclick="testLocalStorage()" style="background-color: #f39c12; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 4px; cursor: pointer;">
+                Test Local Storage
+            </button>
+            
+            <div id="js-test-result" style="margin-top: 1rem; padding: 1rem; background-color: #ecf0f1; border-radius: 4px;">
+                <strong>Test Results:</strong><br>
+                Check the browser console for detailed test output.
+            </div>
+        </section>
+        
+        <section id="api-testing">
+            <h2>API Testing</h2>
+            <p>Test external API calls and responses.</p>
+            
+            <button onclick="testAPICall()" style="background-color: #e67e22; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 4px; cursor: pointer;">
+                Test API Call
+            </button>
+            
+            <div id="api-result" style="margin-top: 1rem;"></div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Testing Pages. Created for testing purposes.</p>
+    </footer>
+    
+    <script src="script.js"></script>
+    <script>
+        function testFormValidation() {
+            const form = document.getElementById('test-form');
+            const result = document.getElementById('form-result');
+            
+            if (window.validateForm(form)) {
+                result.innerHTML = '✅ Form validation passed!';
+                result.className = 'success';
+            } else {
+                result.innerHTML = '❌ Form validation failed. Please fill in all required fields.';
+                result.className = 'error';
+            }
+        }
+        
+        function testLocalStorage() {
+            try {
+                const testKey = 'testData';
+                const testValue = 'Testing local storage functionality';
+                
+                localStorage.setItem(testKey, testValue);
+                const retrieved = localStorage.getItem(testKey);
+                
+                if (retrieved === testValue) {
+                    window.testUtils.log('✅ Local storage test passed');
+                    document.getElementById('js-test-result').innerHTML += '<br>✅ Local storage: Working correctly';
+                } else {
+                    window.testUtils.log('❌ Local storage test failed');
+                    document.getElementById('js-test-result').innerHTML += '<br>❌ Local storage: Failed';
+                }
+                
+                localStorage.removeItem(testKey);
+            } catch (error) {
+                window.testUtils.log('❌ Local storage test error: ' + error.message);
+                document.getElementById('js-test-result').innerHTML += '<br>❌ Local storage: Error - ' + error.message;
+            }
+        }
+        
+        function testAPICall() {
+            const result = document.getElementById('api-result');
+            result.innerHTML = 'Testing API call...';
+            
+            // Test with a simple public API
+            fetch('https://httpbin.org/json')
+                .then(response => response.json())
+                .then(data => {
+                    result.innerHTML = '✅ API call successful!<br><pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                    result.className = 'success';
+                })
+                .catch(error => {
+                    result.innerHTML = '❌ API call failed: ' + error.message;
+                    result.className = 'error';
+                });
+        }
+    </script>
+</body>
+</html>
